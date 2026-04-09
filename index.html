@@ -943,12 +943,8 @@
       color: #aaa; font-family: 'Noto Sans KR', sans-serif;
     }
 
-    /* art7-right footer: sticky so it stays at visible bottom when scrolling */
-    .art7-right .page-footer-abs {
-      position: sticky;
-      bottom: 0;
-      margin-top: auto;
-    }
+    /* art7-right footer: absolute (standard behavior, same as all other desktop pages) */
+    /* sticky was causing the footer to cover content when scrolling up */
 
     /* ══════════════════════════════
        TEMPLATE SPREADS
@@ -1085,24 +1081,26 @@
         overflow-y: visible;
       }
 
-      /* Fix article-left-page: oval centered both axes */
+      /* Fix article-left-page: oval centered with sticky footer (consistent with other mobile pages) */
       .article-left-page {
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         overflow: hidden;
       }
-      /* Oval 1.5x bigger — base width × scale = apparent size */
+      /* Oval 1.5x bigger — auto margin centers oval in space above footer */
       .article-left-page .oval-main {
         width: 65% !important;
         transform: scale(1.5);
         transform-origin: center;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
       }
-      /* Footer stays at true bottom (absolute, not sticky) for centered-oval pages */
+      /* Footer: sticky, same as all other mobile pages */
       .article-left-page .page-footer-abs {
-        position: absolute !important;
+        position: sticky !important;
         margin-top: 0 !important;
         width: 100% !important;
         align-self: stretch !important;
@@ -1677,6 +1675,737 @@
     </div><!-- /sp7 -->
 
 
+    <!-- ═══════════════════════════════════════════════
+         36 LAYOUT TEMPLATES — 색상 팔레트 기반
+    ═══════════════════════════════════════════════ -->
+
+    <!-- T01 Wine #722F37 — Layout A (타이틀+본문) -->
+    <div class="spread" id="spt01">
+      <div class="page page-left" style="background:#722F37; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div style="position:absolute; width:300px; height:300px; border-radius:50%; background:rgba(255,255,255,0.05); top:-60px; right:-60px;"></div>
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T01</div>
+          <div class="tmpl-name">Wine</div>
+          <div class="tmpl-hex">#722F37</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Wine Layout</span><span class="footer-light">19</span></div>
+      </div>
+      <div class="page page-right tmpl-right-body">
+        <div class="tmpl-layout-label">LAYOUT A — WINE #722F37</div>
+        <div class="tmpl-ph-title" style="color:#722F37;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">본문 내용이 여기에 들어갑니다. 새로운 기사 내용을 이 레이아웃 템플릿에 맞게 작성해 주세요. 색상 테마: Wine (#722F37)을 기반으로 합니다. 풍부한 버건디 색상으로 깊이 있는 글에 어울리는 레이아웃입니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#722F37;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1을 입력하세요<br>• 핵심 포인트 2를 입력하세요<br>• 핵심 포인트 3을 입력하세요</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T01</span></div>
+      </div>
+    </div>
+
+    <!-- T02 Scarlet #CC2529 -->
+    <div class="spread" id="spt02">
+      <div class="page page-left" style="background:#CC2529; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T02</div>
+          <div class="tmpl-name">Scarlet</div>
+          <div class="tmpl-hex">#CC2529</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Scarlet Layout</span><span class="footer-light">21</span></div>
+      </div>
+      <div class="page page-right tmpl-right-body">
+        <div class="tmpl-layout-label">LAYOUT A — SCARLET #CC2529</div>
+        <div class="tmpl-ph-title" style="color:#CC2529;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">본문 내용이 여기에 들어갑니다. 스칼렛 레드의 강렬한 색상은 열정적이고 에너지 넘치는 주제에 잘 어울립니다. 새로운 기사의 내용을 이 공간에 채워주세요.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#CC2529;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1을 입력하세요<br>• 핵심 포인트 2를 입력하세요<br>• 핵심 포인트 3을 입력하세요</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T02</span></div>
+      </div>
+    </div>
+
+    <!-- T03 Cherry Red #C73030 -->
+    <div class="spread" id="spt03">
+      <div class="page page-left" style="background:#C73030; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T03</div>
+          <div class="tmpl-name">Cherry Red</div>
+          <div class="tmpl-hex">#C73030</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Cherry Red Layout</span><span class="footer-light">23</span></div>
+      </div>
+      <div class="page page-right tmpl-right-body">
+        <div class="tmpl-layout-label">LAYOUT A — CHERRY RED #C73030</div>
+        <div class="tmpl-ph-title" style="color:#C73030;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">체리 레드는 따뜻하고 활기찬 분위기를 연출합니다. 사랑, 열정, 감사의 주제에 잘 어울리는 색상입니다. 새로운 기사 내용을 채워주세요.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#C73030;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T03</span></div>
+      </div>
+    </div>
+
+    <!-- T04 Coral #FF6B47 -->
+    <div class="spread" id="spt04">
+      <div class="page page-left" style="background:#FF6B47; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T04</div>
+          <div class="tmpl-name">Coral</div>
+          <div class="tmpl-hex">#FF6B47</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Coral Layout</span><span class="footer-light">25</span></div>
+      </div>
+      <div class="page page-right tmpl-right-body">
+        <div class="tmpl-layout-label">LAYOUT A — CORAL #FF6B47</div>
+        <div class="tmpl-ph-title" style="color:#FF6B47;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">코랄은 따뜻한 오렌지-핑크 색상으로 친근하고 밝은 분위기를 만들어 줍니다. 가족 이야기, 희망의 메시지에 잘 어울립니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#FF6B47;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T04</span></div>
+      </div>
+    </div>
+
+    <!-- T05 Sunshine Orange #FFAA1D -->
+    <div class="spread" id="spt05">
+      <div class="page page-left" style="background:#FFAA1D; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle" style="background:rgba(0,0,0,0.12);">
+          <div class="tmpl-num" style="color:rgba(0,0,0,0.45);">TEMPLATE T05</div>
+          <div class="tmpl-name" style="color:#fff;">Sunshine<br>Orange</div>
+          <div class="tmpl-hex" style="color:rgba(0,0,0,0.38);">#FFAA1D</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light" style="color:rgba(0,0,0,0.4);">Sunshine Orange</span><span class="footer-light" style="color:rgba(0,0,0,0.4);">27</span></div>
+      </div>
+      <div class="page page-right tmpl-right-body">
+        <div class="tmpl-layout-label">LAYOUT A — SUNSHINE ORANGE #FFAA1D</div>
+        <div class="tmpl-ph-title" style="color:#E8960A;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">따뜻하고 밝은 선샤인 오렌지는 기쁨과 활력을 상징합니다. 성취, 감사, 축복의 이야기를 담기에 적합합니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#FFAA1D;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T05</span></div>
+      </div>
+    </div>
+
+    <!-- T06 Tangerine #F07030 -->
+    <div class="spread" id="spt06">
+      <div class="page page-left" style="background:#F07030; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T06</div>
+          <div class="tmpl-name">Tangerine</div>
+          <div class="tmpl-hex">#F07030</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Tangerine Layout</span><span class="footer-light">29</span></div>
+      </div>
+      <div class="page page-right tmpl-right-body">
+        <div class="tmpl-layout-label">LAYOUT A — TANGERINE #F07030</div>
+        <div class="tmpl-ph-title" style="color:#F07030;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">탠저린 오렌지는 활기차고 따뜻한 에너지를 전달합니다. 새로운 시작, 도전, 성장의 주제에 어울립니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#F07030;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T06</span></div>
+      </div>
+    </div>
+
+    <!-- T07 Golden Yellow #F5C000 — Layout B (Q&A 스타일) -->
+    <div class="spread" id="spt07">
+      <div class="page page-left" style="background:#F5C000; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle" style="background:rgba(0,0,0,0.1);">
+          <div class="tmpl-num" style="color:rgba(0,0,0,0.4);">TEMPLATE T07</div>
+          <div class="tmpl-name" style="color:#333;">Golden<br>Yellow</div>
+          <div class="tmpl-hex" style="color:rgba(0,0,0,0.35);">#F5C000</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light" style="color:rgba(0,0,0,0.38);">Golden Yellow</span><span class="footer-light" style="color:rgba(0,0,0,0.38);">31</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT B — GOLDEN YELLOW #F5C000</div>
+        <div style="background:#fffde7; border-radius:8px; padding:24px; margin-bottom:18px; border-left:4px solid #F5C000;">
+          <div style="font-size:0.9rem; font-weight:700; color:#333; margin-bottom:12px;">오늘의 메시지</div>
+          <div style="font-size:0.75rem; line-height:1.95; color:#555;">황금빛 메시지가 여기에 들어갑니다. 격려의 말씀, 지혜의 이야기를 담아주세요.</div>
+        </div>
+        <div class="article-body">
+          <p>본문 내용이 여기에 들어갑니다. 골든 옐로우 색상은 지혜와 영성, 풍요로움을 상징합니다. 중요한 메시지나 교훈을 담기에 적합한 레이아웃입니다.</p>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T07</span></div>
+      </div>
+    </div>
+
+    <!-- T08 Lemon Yellow #F0E840 -->
+    <div class="spread" id="spt08">
+      <div class="page page-left" style="background:#F0E840; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle" style="background:rgba(0,0,0,0.08);">
+          <div class="tmpl-num" style="color:rgba(0,0,0,0.4);">TEMPLATE T08</div>
+          <div class="tmpl-name" style="color:#333;">Lemon<br>Yellow</div>
+          <div class="tmpl-hex" style="color:rgba(0,0,0,0.35);">#F0E840</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light" style="color:rgba(0,0,0,0.38);">Lemon Yellow</span><span class="footer-light" style="color:rgba(0,0,0,0.38);">33</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT B — LEMON YELLOW #F0E840</div>
+        <div style="background:#fefde7; border-radius:8px; padding:24px; margin-bottom:18px; border-left:4px solid #F0E840;">
+          <div style="font-size:0.9rem; font-weight:700; color:#333; margin-bottom:12px;">오늘의 메시지</div>
+          <div style="font-size:0.75rem; line-height:1.95; color:#555;">레몬 옐로우의 신선하고 밝은 에너지로 오늘의 메시지를 전합니다.</div>
+        </div>
+        <div class="article-body"><p>레몬 옐로우는 신선함, 낙관주의, 지적 호기심을 상징합니다. 새로운 아이디어나 배움에 관한 이야기를 담아보세요.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T08</span></div>
+      </div>
+    </div>
+
+    <!-- T09 Neon Yellow #D8EC30 -->
+    <div class="spread" id="spt09">
+      <div class="page page-left" style="background:#D8EC30; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle" style="background:rgba(0,0,0,0.1);">
+          <div class="tmpl-num" style="color:rgba(0,0,0,0.4);">TEMPLATE T09</div>
+          <div class="tmpl-name" style="color:#333;">Neon<br>Yellow</div>
+          <div class="tmpl-hex" style="color:rgba(0,0,0,0.35);">#D8EC30</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light" style="color:rgba(0,0,0,0.38);">Neon Yellow</span><span class="footer-light" style="color:rgba(0,0,0,0.38);">35</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT B — NEON YELLOW #D8EC30</div>
+        <div style="background:#f7fce0; border-radius:8px; padding:24px; margin-bottom:18px; border-left:4px solid #D8EC30;">
+          <div style="font-size:0.9rem; font-weight:700; color:#333; margin-bottom:12px;">오늘의 메시지</div>
+          <div style="font-size:0.75rem; line-height:1.95; color:#555;">네온 옐로우의 생동감 있는 에너지가 이 공간을 채웁니다.</div>
+        </div>
+        <div class="article-body"><p>네온 옐로우는 활력, 창의성, 도전 정신을 상징합니다. 활기찬 새 출발이나 성취의 이야기를 담기에 좋습니다.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T09</span></div>
+      </div>
+    </div>
+
+    <!-- T10 Neon Green #3FD464 -->
+    <div class="spread" id="spt10">
+      <div class="page page-left" style="background:#3FD464; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T10</div>
+          <div class="tmpl-name">Neon<br>Green</div>
+          <div class="tmpl-hex">#3FD464</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Neon Green</span><span class="footer-light">37</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT B — NEON GREEN #3FD464</div>
+        <div style="background:#edfff3; border-radius:8px; padding:24px; margin-bottom:18px; border-left:4px solid #3FD464;">
+          <div style="font-size:0.9rem; font-weight:700; color:#333; margin-bottom:12px;">오늘의 메시지</div>
+          <div style="font-size:0.75rem; line-height:1.95; color:#555;">네온 그린의 신선하고 활기찬 에너지로 채워지는 공간입니다.</div>
+        </div>
+        <div class="article-body"><p>네온 그린은 성장, 자연, 생명력을 상징합니다. 희망과 성장의 이야기를 담아보세요.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T10</span></div>
+      </div>
+    </div>
+
+    <!-- T11 Kelly Green #4CB845 -->
+    <div class="spread" id="spt11">
+      <div class="page page-left" style="background:#4CB845; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T11</div>
+          <div class="tmpl-name">Kelly<br>Green</div>
+          <div class="tmpl-hex">#4CB845</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Kelly Green</span><span class="footer-light">39</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT B — KELLY GREEN #4CB845</div>
+        <div style="background:#eef8ee; border-radius:8px; padding:24px; margin-bottom:18px; border-left:4px solid #4CB845;">
+          <div style="font-size:0.9rem; font-weight:700; color:#333; margin-bottom:12px;">오늘의 메시지</div>
+          <div style="font-size:0.75rem; line-height:1.95; color:#555;">켈리 그린은 전통적인 녹색의 생동감과 안정감을 동시에 줍니다.</div>
+        </div>
+        <div class="article-body"><p>켈리 그린은 균형, 자연의 리듬, 조화로움을 상징합니다. 가족의 이야기나 성장을 담기에 좋은 레이아웃입니다.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T11</span></div>
+      </div>
+    </div>
+
+    <!-- T12 Apple Green #7FB840 -->
+    <div class="spread" id="spt12">
+      <div class="page page-left" style="background:#7FB840; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T12</div>
+          <div class="tmpl-name">Apple<br>Green</div>
+          <div class="tmpl-hex">#7FB840</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Apple Green</span><span class="footer-light">41</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT B — APPLE GREEN #7FB840</div>
+        <div style="background:#f2f8e8; border-radius:8px; padding:24px; margin-bottom:18px; border-left:4px solid #7FB840;">
+          <div style="font-size:0.9rem; font-weight:700; color:#333; margin-bottom:12px;">오늘의 메시지</div>
+          <div style="font-size:0.75rem; line-height:1.95; color:#555;">사과처럼 신선하고 건강한 이야기가 이 공간을 채웁니다.</div>
+        </div>
+        <div class="article-body"><p>애플 그린은 건강, 신선함, 자연의 풍요로움을 상징합니다. 건강과 삶의 질에 관한 이야기에 어울립니다.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T12</span></div>
+      </div>
+    </div>
+
+    <!-- T13 Dark Green #1D6B3C — Layout C (포스터 스타일) -->
+    <div class="spread" id="spt13">
+      <div class="page page-left" style="background:#1D6B3C; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div style="position:absolute; width:200px; height:200px; border-radius:50%; border:40px solid rgba(255,255,255,0.05); bottom:-60px; left:-40px;"></div>
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T13</div>
+          <div class="tmpl-name">Dark<br>Green</div>
+          <div class="tmpl-hex">#1D6B3C</div>
+        </div>
+        <div style="margin-top:20px; text-align:center; position:relative; z-index:1;">
+          <div style="font-family:'Noto Serif KR',serif; font-size:0.72rem; color:rgba(255,255,255,0.6); font-style:italic; line-height:1.8;">"씨를 뿌리는 자는<br>기쁨으로 거두리라"</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Dark Green</span><span class="footer-light">43</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT C — DARK GREEN #1D6B3C</div>
+        <div class="tmpl-ph-title" style="color:#1D6B3C;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">다크 그린은 깊이 있는 숲의 색깔입니다. 성숙함, 지혜, 믿음의 이야기를 담기에 적합합니다. 이 레이아웃에 새로운 기사를 채워주세요.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#1D6B3C;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T13</span></div>
+      </div>
+    </div>
+
+    <!-- T14 Emerald #00A070 -->
+    <div class="spread" id="spt14">
+      <div class="page page-left" style="background:#00A070; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T14</div>
+          <div class="tmpl-name">Emerald</div>
+          <div class="tmpl-hex">#00A070</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Emerald</span><span class="footer-light">45</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT C — EMERALD #00A070</div>
+        <div class="tmpl-ph-title" style="color:#00A070;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">에메랄드 그린은 보석처럼 빛나는 고귀함과 아름다움을 상징합니다. 귀한 교훈이나 삶의 진리를 담기에 좋습니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#00A070;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T14</span></div>
+      </div>
+    </div>
+
+    <!-- T15 Teal #007878 -->
+    <div class="spread" id="spt15">
+      <div class="page page-left" style="background:#007878; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T15</div>
+          <div class="tmpl-name">Teal</div>
+          <div class="tmpl-hex">#007878</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Teal</span><span class="footer-light">47</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT C — TEAL #007878</div>
+        <div class="tmpl-ph-title" style="color:#007878;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">틸은 파랑과 초록이 균형을 이루는 색으로 차분함과 균형을 상징합니다. 지혜로운 이야기나 성찰에 관한 주제에 어울립니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#007878;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T15</span></div>
+      </div>
+    </div>
+
+    <!-- T16 Aquamarine #5EC8A8 -->
+    <div class="spread" id="spt16">
+      <div class="page page-left" style="background:#5EC8A8; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T16</div>
+          <div class="tmpl-name">Aqua-<br>marine</div>
+          <div class="tmpl-hex">#5EC8A8</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Aquamarine</span><span class="footer-light">49</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT C — AQUAMARINE #5EC8A8</div>
+        <div class="tmpl-ph-title" style="color:#3AA888;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">아쿠아마린은 맑고 투명한 바다의 색입니다. 청량함과 평화로운 마음을 전하는 이야기에 잘 어울립니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#5EC8A8;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T16</span></div>
+      </div>
+    </div>
+
+    <!-- T17 Hyacinth #5575A0 -->
+    <div class="spread" id="spt17">
+      <div class="page page-left" style="background:#5575A0; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T17</div>
+          <div class="tmpl-name">Hyacinth</div>
+          <div class="tmpl-hex">#5575A0</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Hyacinth</span><span class="footer-light">51</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT C — HYACINTH #5575A0</div>
+        <div class="tmpl-ph-title" style="color:#5575A0;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">히아신스 블루는 봄의 히아신스 꽃을 연상시키는 은은하고 우아한 색상입니다. 감성적인 이야기나 계절의 변화를 담기에 적합합니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#5575A0;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T17</span></div>
+      </div>
+    </div>
+
+    <!-- T18 Evening Blue #1B3D6E -->
+    <div class="spread" id="spt18">
+      <div class="page page-left" style="background:#1B3D6E; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; overflow:hidden;">
+        <div style="position:absolute; bottom:-40px; right:-40px; width:180px; height:180px; border-radius:50%; border:30px solid rgba(255,255,255,0.05);"></div>
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T18</div>
+          <div class="tmpl-name">Evening<br>Blue</div>
+          <div class="tmpl-hex">#1B3D6E</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Evening Blue</span><span class="footer-light">53</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT C — EVENING BLUE #1B3D6E</div>
+        <div class="tmpl-ph-title" style="color:#1B3D6E;">기사 제목을 입력하세요</div>
+        <div class="tmpl-ph-body">이브닝 블루는 저녁 하늘처럼 깊고 고요한 색상입니다. 성찰, 기도, 감사의 이야기를 담기에 매우 잘 어울리는 색입니다.</div>
+        <hr class="tmpl-ph-rule" style="border-color:#1B3D6E;">
+        <div class="tmpl-ph-points">• 핵심 포인트 1<br>• 핵심 포인트 2<br>• 핵심 포인트 3</div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T18</span></div>
+      </div>
+    </div>
+
+    <!-- T19 Royal Blue #3B5BAF — Layout D (다이어리 스타일) -->
+    <div class="spread" id="spt19">
+      <div class="page page-left" style="background:#3B5BAF; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T19</div>
+          <div class="tmpl-name">Royal<br>Blue</div>
+          <div class="tmpl-hex">#3B5BAF</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Royal Blue</span><span class="footer-light">55</span></div>
+      </div>
+      <div class="page page-right" style="background:#f0f4ff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT D — ROYAL BLUE #3B5BAF</div>
+        <div style="background:#fff; border-radius:8px; padding:24px; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <div class="tmpl-ph-title" style="color:#3B5BAF; font-size:1.1rem;">기사 제목</div>
+          <div class="tmpl-ph-body" style="margin-top:12px;">로열 블루는 왕실의 품위와 신뢰감을 주는 색상입니다. 권위 있는 메시지나 중요한 교훈을 담기에 적합합니다.</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T19</span></div>
+      </div>
+    </div>
+
+    <!-- T20 Denim Blue #1865A0 -->
+    <div class="spread" id="spt20">
+      <div class="page page-left" style="background:#1865A0; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T20</div>
+          <div class="tmpl-name">Denim<br>Blue</div>
+          <div class="tmpl-hex">#1865A0</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Denim Blue</span><span class="footer-light">57</span></div>
+      </div>
+      <div class="page page-right" style="background:#eef5fc; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT D — DENIM BLUE #1865A0</div>
+        <div style="background:#fff; border-radius:8px; padding:24px; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <div class="tmpl-ph-title" style="color:#1865A0; font-size:1.1rem;">기사 제목</div>
+          <div class="tmpl-ph-body" style="margin-top:12px;">데님 블루는 친근하고 실용적인 색상입니다. 일상의 지혜나 실천적인 삶의 이야기를 담기에 잘 어울립니다.</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T20</span></div>
+      </div>
+    </div>
+
+    <!-- T21 Navy Blue #192E5E -->
+    <div class="spread" id="spt21">
+      <div class="page page-left" style="background:#192E5E; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T21</div>
+          <div class="tmpl-name">Navy<br>Blue</div>
+          <div class="tmpl-hex">#192E5E</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Navy Blue</span><span class="footer-light">59</span></div>
+      </div>
+      <div class="page page-right" style="background:#eef0f8; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT D — NAVY BLUE #192E5E</div>
+        <div style="background:#fff; border-radius:8px; padding:24px; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <div class="tmpl-ph-title" style="color:#192E5E; font-size:1.1rem;">기사 제목</div>
+          <div class="tmpl-ph-body" style="margin-top:12px;">네이비 블루는 깊고 안정적인 신뢰의 색입니다. 진지하고 심층적인 주제를 다룰 때 잘 어울리는 레이아웃입니다.</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T21</span></div>
+      </div>
+    </div>
+
+    <!-- T22 Indigo #3B3480 -->
+    <div class="spread" id="spt22">
+      <div class="page page-left" style="background:#3B3480; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T22</div>
+          <div class="tmpl-name">Indigo</div>
+          <div class="tmpl-hex">#3B3480</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Indigo</span><span class="footer-light">61</span></div>
+      </div>
+      <div class="page page-right" style="background:#eeecf8; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT D — INDIGO #3B3480</div>
+        <div style="background:#fff; border-radius:8px; padding:24px; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <div class="tmpl-ph-title" style="color:#3B3480; font-size:1.1rem;">기사 제목</div>
+          <div class="tmpl-ph-body" style="margin-top:12px;">인디고는 영적 깊이와 지혜를 상징하는 색입니다. 신앙, 영성, 내면의 성찰에 관한 이야기를 담기에 이상적입니다.</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T22</span></div>
+      </div>
+    </div>
+
+    <!-- T23 Eggplant #524068 -->
+    <div class="spread" id="spt23">
+      <div class="page page-left" style="background:#524068; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T23</div>
+          <div class="tmpl-name">Eggplant</div>
+          <div class="tmpl-hex">#524068</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Eggplant</span><span class="footer-light">63</span></div>
+      </div>
+      <div class="page page-right" style="background:#f4f0f8; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT D — EGGPLANT #524068</div>
+        <div style="background:#fff; border-radius:8px; padding:24px; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <div class="tmpl-ph-title" style="color:#524068; font-size:1.1rem;">기사 제목</div>
+          <div class="tmpl-ph-body" style="margin-top:12px;">에그플랜트는 신비롭고 깊은 보라-갈색 계열의 색입니다. 독특하고 개성 있는 이야기를 담기에 좋은 레이아웃입니다.</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T23</span></div>
+      </div>
+    </div>
+
+    <!-- T24 Purple #7B4F9A -->
+    <div class="spread" id="spt24">
+      <div class="page page-left" style="background:#7B4F9A; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T24</div>
+          <div class="tmpl-name">Purple</div>
+          <div class="tmpl-hex">#7B4F9A</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Purple</span><span class="footer-light">65</span></div>
+      </div>
+      <div class="page page-right" style="background:#f8f0ff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT D — PURPLE #7B4F9A</div>
+        <div style="background:#fff; border-radius:8px; padding:24px; box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+          <div class="tmpl-ph-title" style="color:#7B4F9A; font-size:1.1rem;">기사 제목</div>
+          <div class="tmpl-ph-body" style="margin-top:12px;">퍼플은 고귀함, 창의성, 영적 풍요로움을 상징합니다. 고상한 주제나 창의적인 사고에 관한 이야기에 잘 어울립니다.</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T24</span></div>
+      </div>
+    </div>
+
+    <!-- T25 Violet #9060B0 — Layout E (실천 카드 스타일) -->
+    <div class="spread" id="spt25">
+      <div class="page page-left" style="background:#9060B0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; overflow:hidden; position:relative; padding:48px 36px 72px;">
+        <div style="position:absolute; top:-50px; right:-50px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.06);"></div>
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T25</div>
+          <div class="tmpl-name">Violet</div>
+          <div class="tmpl-hex">#9060B0</div>
+        </div>
+        <div style="text-align:center; z-index:1; font-family:'Noto Serif KR',serif; font-size:1.6rem; font-weight:900; color:rgba(255,255,255,0.9); line-height:1.3;">새로운<br>시작</div>
+        <div class="page-footer-abs"><span class="footer-light">Violet Layout</span><span class="footer-light">67</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT E — VIOLET #9060B0</div>
+        <div style="font-size:0.75rem; font-weight:600; color:#9060B0; border-bottom:2px solid #9060B0; padding-bottom:10px; margin-bottom:18px;">실천 항목</div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;">
+          <div style="font-size:2rem; font-weight:900; color:#9060B0; opacity:0.7; width:36px; text-align:center; flex-shrink:0;">1</div>
+          <div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">첫 번째 실천 항목을 여기에 작성하세요.</div>
+        </div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;">
+          <div style="font-size:2rem; font-weight:900; color:#9060B0; opacity:0.7; width:36px; text-align:center; flex-shrink:0;">2</div>
+          <div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">두 번째 실천 항목을 여기에 작성하세요.</div>
+        </div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;">
+          <div style="font-size:2rem; font-weight:900; color:#9060B0; opacity:0.7; width:36px; text-align:center; flex-shrink:0;">3</div>
+          <div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">세 번째 실천 항목을 여기에 작성하세요.</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T25</span></div>
+      </div>
+    </div>
+
+    <!-- T26 Fuchsia #C04490 -->
+    <div class="spread" id="spt26">
+      <div class="page page-left" style="background:#C04490; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; overflow:hidden; position:relative; padding:48px 36px 72px;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T26</div>
+          <div class="tmpl-name">Fuchsia</div>
+          <div class="tmpl-hex">#C04490</div>
+        </div>
+        <div style="text-align:center; z-index:1; font-family:'Noto Serif KR',serif; font-size:1.6rem; font-weight:900; color:rgba(255,255,255,0.9); line-height:1.3;">사랑의<br>이야기</div>
+        <div class="page-footer-abs"><span class="footer-light">Fuchsia Layout</span><span class="footer-light">69</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT E — FUCHSIA #C04490</div>
+        <div style="font-size:0.75rem; font-weight:600; color:#C04490; border-bottom:2px solid #C04490; padding-bottom:10px; margin-bottom:18px;">실천 항목</div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#C04490; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">1</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">첫 번째 실천 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#C04490; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">2</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">두 번째 실천 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#C04490; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">3</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">세 번째 실천 항목을 작성하세요.</div></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T26</span></div>
+      </div>
+    </div>
+
+    <!-- T27 Petal Pink #F2A7B7 -->
+    <div class="spread" id="spt27">
+      <div class="page page-left" style="background:#F2A7B7; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; overflow:hidden; position:relative; padding:48px 36px 72px;">
+        <div class="tmpl-left-circle" style="background:rgba(255,255,255,0.3);">
+          <div class="tmpl-num" style="color:rgba(255,255,255,0.7);">TEMPLATE T27</div>
+          <div class="tmpl-name" style="color:#fff;">Petal<br>Pink</div>
+          <div class="tmpl-hex" style="color:rgba(255,255,255,0.6);">#F2A7B7</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Petal Pink</span><span class="footer-light">71</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT E — PETAL PINK #F2A7B7</div>
+        <div style="font-size:0.75rem; font-weight:600; color:#D08090; border-bottom:2px solid #F2A7B7; padding-bottom:10px; margin-bottom:18px;">실천 항목</div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#D08090; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">1</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">첫 번째 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#D08090; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">2</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">두 번째 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#D08090; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">3</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">세 번째 항목을 작성하세요.</div></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T27</span></div>
+      </div>
+    </div>
+
+    <!-- T28 Rose Quartz #B89AB5 -->
+    <div class="spread" id="spt28">
+      <div class="page page-left" style="background:#B89AB5; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; overflow:hidden; padding:48px 36px 72px;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T28</div>
+          <div class="tmpl-name">Rose<br>Quartz</div>
+          <div class="tmpl-hex">#B89AB5</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Rose Quartz</span><span class="footer-light">73</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT E — ROSE QUARTZ #B89AB5</div>
+        <div style="font-size:0.75rem; font-weight:600; color:#9878A0; border-bottom:2px solid #B89AB5; padding-bottom:10px; margin-bottom:18px;">실천 항목</div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#9878A0; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">1</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">첫 번째 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#9878A0; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">2</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">두 번째 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#9878A0; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">3</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">세 번째 항목을 작성하세요.</div></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T28</span></div>
+      </div>
+    </div>
+
+    <!-- T29 Pearl Grey #C0BFBF -->
+    <div class="spread" id="spt29">
+      <div class="page page-left" style="background:#C0BFBF; display:flex; flex-direction:column; align-items:center; justify-content:center; overflow:hidden;">
+        <div class="tmpl-left-circle" style="background:rgba(0,0,0,0.1);">
+          <div class="tmpl-num" style="color:rgba(0,0,0,0.45);">TEMPLATE T29</div>
+          <div class="tmpl-name" style="color:#333;">Pearl<br>Grey</div>
+          <div class="tmpl-hex" style="color:rgba(0,0,0,0.38);">#C0BFBF</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light" style="color:rgba(0,0,0,0.4);">Pearl Grey</span><span class="footer-light" style="color:rgba(0,0,0,0.4);">75</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT E — PEARL GREY #C0BFBF</div>
+        <div style="font-size:0.75rem; font-weight:600; color:#888; border-bottom:2px solid #C0BFBF; padding-bottom:10px; margin-bottom:18px;">실천 항목</div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#999; width:36px; flex-shrink:0; text-align:center;">1</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">첫 번째 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#999; width:36px; flex-shrink:0; text-align:center;">2</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">두 번째 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#999; width:36px; flex-shrink:0; text-align:center;">3</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">세 번째 항목을 작성하세요.</div></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T29</span></div>
+      </div>
+    </div>
+
+    <!-- T30 Charcoal Grey #4A4A4A -->
+    <div class="spread" id="spt30">
+      <div class="page page-left" style="background:#4A4A4A; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; overflow:hidden; padding:48px 36px 72px;">
+        <div class="tmpl-left-circle">
+          <div class="tmpl-num">TEMPLATE T30</div>
+          <div class="tmpl-name">Charcoal<br>Grey</div>
+          <div class="tmpl-hex">#4A4A4A</div>
+        </div>
+        <div class="page-footer-abs"><span class="footer-light">Charcoal Grey</span><span class="footer-light">77</span></div>
+      </div>
+      <div class="page page-right" style="background:#fff; padding:48px 44px 72px; position:relative; display:flex; flex-direction:column;">
+        <div class="tmpl-layout-label">LAYOUT E — CHARCOAL GREY #4A4A4A</div>
+        <div style="font-size:0.75rem; font-weight:600; color:#4A4A4A; border-bottom:2px solid #4A4A4A; padding-bottom:10px; margin-bottom:18px;">실천 항목</div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#4A4A4A; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">1</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">첫 번째 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#4A4A4A; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">2</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">두 번째 항목을 작성하세요.</div></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; padding:14px 0; border-bottom:1px solid #eee;"><div style="font-size:2rem; font-weight:900; color:#4A4A4A; opacity:0.7; width:36px; flex-shrink:0; text-align:center;">3</div><div style="font-size:0.75rem; line-height:1.9; color:#3a3a3a;">세 번째 항목을 작성하세요.</div></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T30</span></div>
+      </div>
+    </div>
+
+    <!-- T31 Black #1A1A1A — Layout F (타이포그래픽 새 레이아웃) -->
+    <div class="spread" id="spt31">
+      <div class="page page-left" style="background:#1A1A1A; display:flex; flex-direction:column; justify-content:center; padding:56px 48px 72px; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, #fff, transparent);"></div>
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:rgba(255,255,255,0.4); letter-spacing:0.15em; margin-bottom:20px;">TEMPLATE T31 — BLACK</div>
+        <div style="font-family:'Noto Serif KR',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:#fff; line-height:1.1; letter-spacing:-0.04em; margin-bottom:24px;">기사<br>제목</div>
+        <div style="width:40px; height:2px; background:rgba(255,255,255,0.4); margin-bottom:20px;"></div>
+        <div style="font-size:0.72rem; color:rgba(255,255,255,0.6); line-height:1.8; font-family:'Noto Serif KR',serif;">부제목 또는 핵심 문구를<br>여기에 입력하세요</div>
+        <div class="page-footer-abs"><span class="footer-light">Black Layout</span><span class="footer-light">T31</span></div>
+      </div>
+      <div class="page page-right" style="background:#f5f5f5; padding:56px 48px 72px; position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:#bbb; letter-spacing:0.1em; margin-bottom:24px;">LAYOUT F — BLACK #1A1A1A</div>
+        <div class="article-body">
+          <p>블랙은 가장 강력하고 고귀한 색입니다. 이 레이아웃은 강렬한 메시지를 전달하기에 적합합니다. 새로운 기사 내용을 이 공간에 채워주세요.</p>
+          <p>이 레이아웃 F는 왼쪽에 큰 타이포그래피 제목을 사용하고 오른쪽에 내용을 담는 새로운 구성입니다.</p>
+        </div>
+        <div class="page-footer-abs"><span class="footer-dark" style="color:#666;">Bravo Times</span><span class="footer-dark" style="color:#666;">T31</span></div>
+      </div>
+    </div>
+
+    <!-- T32 Tan #D4A870 -->
+    <div class="spread" id="spt32">
+      <div class="page page-left" style="background:#D4A870; display:flex; flex-direction:column; justify-content:center; padding:56px 48px 72px; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, rgba(255,255,255,0.6), transparent);"></div>
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:rgba(255,255,255,0.55); letter-spacing:0.15em; margin-bottom:20px;">TEMPLATE T32 — TAN</div>
+        <div style="font-family:'Noto Serif KR',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:#fff; line-height:1.1; letter-spacing:-0.04em; margin-bottom:24px;">기사<br>제목</div>
+        <div style="width:40px; height:2px; background:rgba(255,255,255,0.5); margin-bottom:20px;"></div>
+        <div style="font-size:0.72rem; color:rgba(255,255,255,0.75); line-height:1.8; font-family:'Noto Serif KR',serif;">따뜻한 탄 색상의<br>포근한 메시지</div>
+        <div class="page-footer-abs"><span class="footer-light">Tan Layout</span><span class="footer-light">T32</span></div>
+      </div>
+      <div class="page page-right" style="background:#fdf8f0; padding:56px 48px 72px; position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:#bbb; letter-spacing:0.1em; margin-bottom:24px;">LAYOUT F — TAN #D4A870</div>
+        <div class="article-body"><p>탠은 따뜻하고 자연스러운 흙색 계열입니다. 안정적이고 포근한 분위기의 이야기를 담기에 좋은 레이아웃입니다.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T32</span></div>
+      </div>
+    </div>
+
+    <!-- T33 Taupe #B09080 -->
+    <div class="spread" id="spt33">
+      <div class="page page-left" style="background:#B09080; display:flex; flex-direction:column; justify-content:center; padding:56px 48px 72px; position:relative; overflow:hidden;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:rgba(255,255,255,0.5); letter-spacing:0.15em; margin-bottom:20px;">TEMPLATE T33 — TAUPE</div>
+        <div style="font-family:'Noto Serif KR',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:#fff; line-height:1.1; letter-spacing:-0.04em; margin-bottom:24px;">기사<br>제목</div>
+        <div style="width:40px; height:2px; background:rgba(255,255,255,0.4); margin-bottom:20px;"></div>
+        <div style="font-size:0.72rem; color:rgba(255,255,255,0.7); line-height:1.8; font-family:'Noto Serif KR',serif;">따뜻한 중성 색상의<br>은은한 이야기</div>
+        <div class="page-footer-abs"><span class="footer-light">Taupe Layout</span><span class="footer-light">T33</span></div>
+      </div>
+      <div class="page page-right" style="background:#faf5f0; padding:56px 48px 72px; position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:#bbb; letter-spacing:0.1em; margin-bottom:24px;">LAYOUT F — TAUPE #B09080</div>
+        <div class="article-body"><p>타우프는 따뜻하고 우아한 중성 색상입니다. 세련되고 격조 있는 이야기나 삶의 지혜를 담기에 적합한 레이아웃입니다.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T33</span></div>
+      </div>
+    </div>
+
+    <!-- T34 Camel #C0966A -->
+    <div class="spread" id="spt34">
+      <div class="page page-left" style="background:#C0966A; display:flex; flex-direction:column; justify-content:center; padding:56px 48px 72px; position:relative; overflow:hidden;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:rgba(255,255,255,0.5); letter-spacing:0.15em; margin-bottom:20px;">TEMPLATE T34 — CAMEL</div>
+        <div style="font-family:'Noto Serif KR',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:#fff; line-height:1.1; letter-spacing:-0.04em; margin-bottom:24px;">기사<br>제목</div>
+        <div style="width:40px; height:2px; background:rgba(255,255,255,0.45); margin-bottom:20px;"></div>
+        <div style="font-size:0.72rem; color:rgba(255,255,255,0.72); line-height:1.8; font-family:'Noto Serif KR',serif;">카멜 빛 따뜻함으로<br>전하는 이야기</div>
+        <div class="page-footer-abs"><span class="footer-light">Camel Layout</span><span class="footer-light">T34</span></div>
+      </div>
+      <div class="page page-right" style="background:#fdf7ef; padding:56px 48px 72px; position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:#bbb; letter-spacing:0.1em; margin-bottom:24px;">LAYOUT F — CAMEL #C0966A</div>
+        <div class="article-body"><p>카멜은 낙타의 털색에서 온 따뜻하고 자연스러운 색입니다. 여행, 인내, 희망의 여정을 담기에 잘 어울리는 레이아웃입니다.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T34</span></div>
+      </div>
+    </div>
+
+    <!-- T35 Cocoa Brown #9A5030 -->
+    <div class="spread" id="spt35">
+      <div class="page page-left" style="background:#9A5030; display:flex; flex-direction:column; justify-content:center; padding:56px 48px 72px; position:relative; overflow:hidden;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:rgba(255,255,255,0.5); letter-spacing:0.15em; margin-bottom:20px;">TEMPLATE T35 — COCOA BROWN</div>
+        <div style="font-family:'Noto Serif KR',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:#fff; line-height:1.1; letter-spacing:-0.04em; margin-bottom:24px;">기사<br>제목</div>
+        <div style="width:40px; height:2px; background:rgba(255,255,255,0.4); margin-bottom:20px;"></div>
+        <div style="font-size:0.72rem; color:rgba(255,255,255,0.7); line-height:1.8; font-family:'Noto Serif KR',serif;">코코아의 풍부함과<br>따뜻함을 담은 이야기</div>
+        <div class="page-footer-abs"><span class="footer-light">Cocoa Brown</span><span class="footer-light">T35</span></div>
+      </div>
+      <div class="page page-right" style="background:#fdf5ef; padding:56px 48px 72px; position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:#bbb; letter-spacing:0.1em; margin-bottom:24px;">LAYOUT F — COCOA BROWN #9A5030</div>
+        <div class="article-body"><p>코코아 브라운은 깊고 따뜻한 초콜릿 색입니다. 풍부한 경험이나 성숙한 지혜를 전하는 이야기를 담기에 적합한 레이아웃입니다.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T35</span></div>
+      </div>
+    </div>
+
+    <!-- T36 Dark Brown #5C2E18 -->
+    <div class="spread" id="spt36">
+      <div class="page page-left" style="background:#5C2E18; display:flex; flex-direction:column; justify-content:center; padding:56px 48px 72px; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg, #D4A870, transparent);"></div>
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:rgba(255,255,255,0.45); letter-spacing:0.15em; margin-bottom:20px;">TEMPLATE T36 — DARK BROWN</div>
+        <div style="font-family:'Noto Serif KR',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:#fff; line-height:1.1; letter-spacing:-0.04em; margin-bottom:24px;">기사<br>제목</div>
+        <div style="width:40px; height:2px; background:rgba(212,168,112,0.7); margin-bottom:20px;"></div>
+        <div style="font-size:0.72rem; color:rgba(255,255,255,0.65); line-height:1.8; font-family:'Noto Serif KR',serif;">짙은 나무의 색처럼<br>깊고 견고한 이야기</div>
+        <div class="page-footer-abs"><span class="footer-light">Dark Brown Layout</span><span class="footer-light">T36</span></div>
+      </div>
+      <div class="page page-right" style="background:#faf4ee; padding:56px 48px 72px; position:relative; display:flex; flex-direction:column;">
+        <div style="font-family:'Noto Sans KR',sans-serif; font-size:0.55rem; color:#bbb; letter-spacing:0.1em; margin-bottom:24px;">LAYOUT F — DARK BROWN #5C2E18</div>
+        <div class="article-body"><p>다크 브라운은 오래된 목재처럼 깊고 견고한 신뢰의 색입니다. 오랜 시간을 담은 지혜나 전통의 가치를 전하는 이야기에 어울립니다.</p></div>
+        <div class="page-footer-abs"><span class="footer-dark">Bravo Times</span><span class="footer-dark">T36</span></div>
+      </div>
+    </div>
 
   </div><!-- /bookStage -->
 
