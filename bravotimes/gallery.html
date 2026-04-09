@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자존감 갤러리 — Bravo Times</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple: #035AA6;
+      --bg: #f0ece4;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #2a2a3a;
+    }
+
+    /* Header */
+    .gallery-header {
+      background: var(--purple);
+      padding: 28px 40px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .back-btn {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.25); }
+
+    .header-text h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .header-text p {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 4px;
+    }
+
+    .count-badge {
+      margin-left: auto;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    .demo-notice {
+      background: #fff8e1;
+      border-left: 4px solid #f59e0b;
+      padding: 10px 16px;
+      font-size: 0.78rem;
+      color: #7c5c00;
+      display: none;
+    }
+    .demo-notice.visible { display: block; }
+
+    /* Main content */
+    .gallery-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 40px 60px;
+    }
+
+    /* Grid — 2 equal columns (1:1 ratio), thumbnails half size */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .gallery-main { padding: 20px 16px 40px; }
+      .gallery-grid { gap: 12px; }
+      .gallery-header { padding: 16px 16px 14px; }
+    }
+
+    .gallery-item {
+      background: #fff;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      position: relative;
+      cursor: pointer;
+      transition: opacity 0.18s, box-shadow 0.18s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .gallery-item:hover {
+      opacity: 0.88;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #fafaf6;
+    }
+
+    .gallery-item .item-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.55));
+      padding: 20px 8px 8px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .gallery-item:hover .item-overlay { opacity: 1; }
+
+    .item-name {
+      font-size: 0.7rem;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .item-num {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.8);
+      background: rgba(0,0,0,0.35);
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: #aaa;
+    }
+    .empty-state .empty-icon { font-size: 4rem; margin-bottom: 20px; opacity: 0.5; }
+    .empty-state h2 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.1rem; font-weight: 500; color: #888; margin-bottom: 10px;
+    }
+    .empty-state p { font-size: 0.78rem; color: #bbb; line-height: 1.7; }
+    .empty-state .go-btn {
+      display: inline-block; margin-top: 24px; padding: 10px 28px;
+      background: var(--purple); color: #fff; border: none;
+      border-radius: 24px; font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.82rem; cursor: pointer; text-decoration: none;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 1000;
+      align-items: center; justify-content: center;
+      flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 80vh;
+      object-fit: contain;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+    .lightbox-meta {
+      margin-top: 14px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.78rem;
+      text-align: center;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      color: #fff; font-size: 2rem; cursor: pointer;
+      background: none; border: none; line-height: 1; opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* Loading */
+    .loading-msg { text-align: center; padding: 40px; color: #aaa; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<!-- Demo notice (shown when Supabase not configured) -->
+<div class="demo-notice" id="demoNotice">
+  데모 모드: 아래 Supabase 설정이 완료되면 전 세계 사용자가 공유하는 갤러리로 작동합니다.
+  gallery_admin.html에서 설정 방법을 확인하세요.
+</div>
+
+<header class="gallery-header">
+  <a class="back-btn" href="index.html">← 돌아가기</a>
+  <div class="header-text">
+    <h1>자존감 갤러리</h1>
+    <p>Bravo Times 가족들이 직접 그린 작품들</p>
+  </div>
+  <span class="count-badge" id="countBadge">0 작품</span>
+</header>
+
+<main class="gallery-main">
+  <div class="loading-msg" id="loadingMsg">불러오는 중...</div>
+  <div class="gallery-grid" id="galleryGrid" style="display:none;"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <div class="empty-icon">🖼️</div>
+    <h2>아직 업로드된 작품이 없습니다</h2>
+    <p>자존감 페이지에서 직접 그린 일러스트를 업로드하면<br>이 갤러리에 차곡차곡 쌓입니다.</p>
+    <a class="go-btn" href="index.html">Bravo Times로 이동 →</a>
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="작품 크게 보기">
+  <div class="lightbox-meta" id="lightboxMeta"></div>
+</div>
+
+<script>
+  /* ══════════════════════════════════════════
+     Supabase 설정
+     아래 두 값을 본인의 Supabase 프로젝트 값으로 교체하세요.
+     설정 방법: https://supabase.com → 프로젝트 생성 → Settings → API
+     ══════════════════════════════════════════ */
+  const SUPABASE_URL     = '';  // 예: 'https://abcdef.supabase.co'
+  const SUPABASE_ANON_KEY = ''; // 예: 'eyJh....'
+
+  const DEMO_MODE = !SUPABASE_URL || !SUPABASE_ANON_KEY;
+
+  /* ── 데모용 더미 데이터 (Supabase 미설정 시 표시) ── */
+  const DEMO_ARTWORKS = [
+    {
+      id: 1,
+      image_url: makeSVGDataURL('#B4D8E7', '자존감'),
+      file_name: 'selfesteem_demo1.png',
+      file_size: 18432,
+      upload_time: '2026-03-10T09:15:00Z'
+    },
+    {
+      id: 2,
+      image_url: makeSVGDataURL('#f79f89', '나를 믿어'),
+      file_name: 'believe_demo2.png',
+      file_size: 24576,
+      upload_time: '2026-03-18T14:30:00Z'
+    },
+    {
+      id: 3,
+      image_url: makeSVGDataURL('#035AA6', '꿈을 향하여'),
+      file_name: 'dream_demo3.png',
+      file_size: 31200,
+      upload_time: '2026-03-25T11:00:00Z'
+    },
+    {
+      id: 4,
+      image_url: makeSVGDataURL('#904a64', '습관의 힘'),
+      file_name: 'habit_demo4.png',
+      file_size: 22150,
+      upload_time: '2026-04-01T08:45:00Z'
+    },
+    {
+      id: 5,
+      image_url: makeSVGDataURL('#558BCF', 'My Family'),
+      file_name: 'family_demo5.png',
+      file_size: 19800,
+      upload_time: '2026-04-05T16:20:00Z'
+    }
+  ];
+
+  function makeSVGDataURL(color, label) {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+      <rect width="400" height="400" fill="${color}"/>
+      <circle cx="200" cy="160" r="80" fill="rgba(255,255,255,0.18)"/>
+      <text x="200" y="172" font-family="serif" font-size="28" fill="white" text-anchor="middle" font-weight="bold">${label}</text>
+      <text x="200" y="310" font-family="sans-serif" font-size="14" fill="rgba(255,255,255,0.6)" text-anchor="middle">Bravo Times Gallery</text>
+      <text x="200" y="340" font-family="sans-serif" font-size="12" fill="rgba(255,255,255,0.4)" text-anchor="middle">Demo Artwork</text>
+    </svg>`;
+    return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  }
+
+  /* ── Supabase REST API helpers ── */
+  function apiHeaders() {
+    return {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Content-Type': 'application/json'
+    };
+  }
+
+  function fetchArtworks() {
+    return fetch(SUPABASE_URL + '/rest/v1/artworks?order=upload_time.desc&select=id,image_url,file_name,file_size,upload_time', {
+      headers: apiHeaders()
+    }).then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    });
+  }
+
+  /* ── Render grid ── */
+  function renderGrid(records) {
+    const grid    = document.getElementById('galleryGrid');
+    const empty   = document.getElementById('emptyState');
+    const badge   = document.getElementById('countBadge');
+    const loading = document.getElementById('loadingMsg');
+
+    loading.style.display = 'none';
+    badge.textContent = records.length + ' 작품';
+
+    if (records.length === 0) {
+      grid.style.display  = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+
+    grid.style.display  = 'grid';
+    empty.style.display = 'none';
+    grid.innerHTML      = '';
+
+    records.forEach(function (rec, idx) {
+      const src  = rec.image_url || '';
+      const name = rec.file_name || ('작품 ' + (idx + 1));
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.innerHTML =
+        '<img src="' + src + '" alt="' + escAttr(name) + '" loading="lazy">' +
+        '<span class="item-num">#' + (idx + 1) + '</span>' +
+        '<div class="item-overlay"><div class="item-name">' + escHtml(name) + '</div></div>';
+      item.addEventListener('click', function () { openLightbox(src, rec); });
+      grid.appendChild(item);
+    });
+  }
+
+  /* ── Lightbox ── */
+  function openLightbox(src, rec) {
+    document.getElementById('lightboxImg').src = src;
+    var date = rec.upload_time ? new Date(rec.upload_time).toLocaleString('ko-KR') : '';
+    var size = rec.file_size ? formatSize(rec.file_size) : '';
+    document.getElementById('lightboxMeta').textContent =
+      (rec.file_name || '') + (size ? ' · ' + size : '') + (date ? ' · ' + date : '');
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLightbox();
+  });
+
+  /* ── Helpers ── */
+  function formatSize(bytes) {
+    if (!bytes) return '0 B';
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / 1048576).toFixed(1) + ' MB';
+  }
+  function escAttr(s) { return String(s).replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+  function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  /* ── Boot ── */
+  if (DEMO_MODE) {
+    document.getElementById('demoNotice').classList.add('visible');
+    renderGrid(DEMO_ARTWORKS);
+  } else {
+    fetchArtworks()
+      .then(renderGrid)
+      .catch(function (err) {
+        console.error('Gallery load error:', err);
+        document.getElementById('loadingMsg').textContent = '갤러리를 불러올 수 없습니다. 설정을 확인해 주세요.';
+      });
+  }
+</script>
+
+</body>
+</html>
