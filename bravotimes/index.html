@@ -943,11 +943,14 @@
       color: #aaa; font-family: 'Noto Sans KR', sans-serif;
     }
 
-    /* art7-right footer: sticky so it stays at visible bottom when scrolling */
+    /* art7-right footer: normal flow so it scrolls with content and never covers it */
     .art7-right .page-footer-abs {
-      position: sticky;
-      bottom: 0;
-      margin-top: auto;
+      position: relative !important;
+      bottom: auto !important;
+      left: auto !important;
+      right: auto !important;
+      width: 100% !important;
+      margin-top: 24px;
     }
 
     /* ══════════════════════════════
@@ -1072,6 +1075,11 @@
         pointer-events: none;
       }
 
+      /* Fix md-right: inline flex-direction:row → column so footer spans full width */
+      .md-right {
+        flex-direction: column !important;
+      }
+
       /* Fix md-left top-clip issue */
       .md-left {
         align-items: stretch !important;
@@ -1085,24 +1093,29 @@
         overflow-y: visible;
       }
 
-      /* Fix article-left-page: oval centered both axes */
+      /* Fix article-left-page: overflow-y:auto so sticky works; overflow-x:hidden clips scaled oval */
       .article-left-page {
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
-        overflow: hidden;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
       }
-      /* Oval 1.5x bigger — base width × scale = apparent size */
+      /* Oval: margin-top/bottom auto → centers oval in space above the footer */
       .article-left-page .oval-main {
         width: 65% !important;
         transform: scale(1.5);
         transform-origin: center;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+        flex-shrink: 0 !important;
       }
-      /* Footer stays at true bottom (absolute, not sticky) for centered-oval pages */
+      /* Footer: sticky at bottom, consistent with all other mobile pages */
       .article-left-page .page-footer-abs {
-        position: absolute !important;
+        position: sticky !important;
+        bottom: 0 !important;
         margin-top: 0 !important;
         width: 100% !important;
         align-self: stretch !important;
@@ -1115,11 +1128,22 @@
       }
       .shapes-right {
         overflow-y: auto;
+        overflow-x: hidden;
         padding-bottom: 50px;
+        justify-content: flex-start !important;
+        gap: 16px !important;
       }
-      .shape-rect { width: 82%; }
-      .shape-hexagon { width: 78%; }
-      .shape-oval { width: 72%; }
+      .shape-rect { width: 90% !important; min-height: auto !important; overflow: visible !important; }
+      .shape-hexagon { width: 85% !important; min-height: auto !important; overflow: visible !important; }
+      .shape-oval { width: 80% !important; min-height: auto !important; overflow: visible !important; border-radius: 50% / 40% !important; padding: 28px 40px !important; }
+      .shape-rect p, .shape-hexagon p, .shape-oval p {
+        font-size: clamp(0.7rem, 3vw, 0.85rem) !important;
+        line-height: 1.8 !important;
+      }
+      .shape-oval .quote {
+        font-size: clamp(0.7rem, 3vw, 0.82rem) !important;
+        line-height: 1.75 !important;
+      }
 
       .poem-text { grid-template-columns: 1fr; }
       .poem-box { width: 100%; max-width: 100%; }
@@ -1148,6 +1172,19 @@
       .spine-text { top: 20%; }
       .book-nav { gap: 8px; }
       .key-hint { display: none; }
+
+      /* sketch page: top-align content, shrink upload area */
+      .sketch-page {
+        justify-content: flex-start !important;
+        padding-top: 24px !important;
+        padding-bottom: 0 !important;
+      }
+      .img-upload-area {
+        width: 200px !important;
+        height: 180px !important;
+      }
+      .upload-hint { margin-top: 6px !important; }
+      .gallery-btn { margin-top: 14px !important; }
     }
 
     @media (max-width: 560px) {
@@ -1675,8 +1712,6 @@
       </div>
 
     </div><!-- /sp7 -->
-
-
 
   </div><!-- /bookStage -->
 
